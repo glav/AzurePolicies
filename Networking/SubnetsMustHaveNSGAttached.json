@@ -1,47 +1,37 @@
 {
-  "displayName": "Subnets must have NSG",
-  "mode": "All",
-  "metadata": {
-    "category": "GlavsCustom"
-  },
-  "parameters": {},
-  "policyRule": {
-    "if": {
-      "anyOf": [
-        {
-          "allOf": [
-            {
-              "field": "type",
-              "equals": "Microsoft.Network/virtualNetworks"
-            },
-            {
-              "not": {
-                "field": "Microsoft.Network/virtualNetworks/subnets[*].networkSecurityGroup.id",
-                "exists": true
-              }
+  "if": {
+    "anyOf": [
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Network/virtualNetworks"
+          },
+          {
+            "not": {
+              "field": "Microsoft.Network/virtualNetworks/subnets[*].networkSecurityGroup.id",
+              "exists": true
             }
-          ]
-        },
-        {
-          "allOf": [
-            {
-              "field": "type",
-              "equals": "Microsoft.Network/virtualNetworks/subnets"
-            },
-            {
-              "not": {
-                "field": "Microsoft.Network/virtualNetworks/subnets/networkSecurityGroup.id",
-                "exists": true
-              }
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Network/virtualNetworks/subnets"
+          },
+          {
+            "not": {
+              "field": "Microsoft.Network/virtualNetworks/subnets/networkSecurityGroup.id",
+              "exists": true
             }
-          ]
-        }
-      ]
-    },
-    "then": {
-      "effect": "deny"
-    }
+          }
+        ]
+      }
+    ]
   },
-  "type": "Microsoft.Authorization/policyDefinitions",
-  "policyType": "Custom"
+  "then": {
+    "effect": "deny"
+  }
 }
