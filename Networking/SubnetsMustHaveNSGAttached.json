@@ -1,5 +1,6 @@
 {
     "type": "Microsoft.Authorization/policyDefinitions",
+	"policyType": "Custom",
     "properties": {
       "displayName": "Subnets must have NSG attached",
       "mode": "All",
@@ -43,8 +44,6 @@
         "then": {
           "effect": "deny"
         }
-      },
-	  "policyType": "Custom",
-	  "type": "Microsoft.Authorization/policyDefinitions"    
+      }
   }
 }
